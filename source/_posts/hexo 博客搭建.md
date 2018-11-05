@@ -15,7 +15,7 @@ categories:
 
 ### 安装博客框架
 
-```shell
+```
 ## 安装 hexo
 $ npm install -g hexo-cli
 
@@ -38,14 +38,13 @@ $ npm install
 ### 部署
 
 安装 hexo-deployer-git
-
-```shell
+```
 $ npm install hexo-deployer-git --save
 ```
 
 修改配置
 
-```yml
+```
 deploy:
   type: git
   repo: <repository url>
@@ -53,7 +52,7 @@ deploy:
   message: [message]
 ```
 
-```shell
+```
 ### 部署到远端
 $ hexo deploy
 ```
