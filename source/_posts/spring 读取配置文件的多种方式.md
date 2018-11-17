@@ -24,7 +24,7 @@ categories:
                       classpath:config/dev/rabbitmq-dev.properties"/>
 ```
 
-如果没有声明并且 `filed` 皆为 `string` 类型，项目启动的时候不会报错，但是使用时会发现对应的 `filed` 值并没有被解析，而是原始表达式如 `${example.name}` 。
+如果没有声明并且 `filed` 皆为 `string` 类型，项目启动的时候可能不会报错，但是使用时会发现对应的 `filed` 值并没有被解析，而是原始表达式如 `${example.name}` 。
 如果 `filed` 有非 `string` 类型的值，则启动时会报类型转换异常的错。
 
 使用如下所示：

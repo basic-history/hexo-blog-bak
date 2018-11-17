@@ -120,7 +120,7 @@ myGallery:
 
 # Whether to display post-calender in the `archive` page
 # 设置在归档页面中是否显示'文章日历'控件
-postCalendar: true
+postCalendar: false
 
 # the Gitalk config，default disabled
 # Gitalk 评论模块的配置，默认为不激活

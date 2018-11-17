@@ -42,7 +42,7 @@
             <%# year. %>
             <% if (date(post.date, 'YYYY') != year) { %>
             <% year = date(post.date, 'YYYY'); %>
-            <div class="cd-timeline-img year" data-aos="zoom-in-up">
+            <div class="cd-timeline-img year" >
                 <a href="<%- url_for('/archives/' + year) %>"><%- year %></a>
             </div>
             <% } %>
@@ -53,16 +53,16 @@
                 month = date(post.date, 'YYYY-MM');
                 var m = date(post.date, 'MM')
             %>
-            <div class="cd-timeline-img month" data-aos="zoom-in-up">
+            <div class="cd-timeline-img month" >
                 <a href="<%- url_for('/archives/' + year + '/' + m) %>"><%- m %></a>
             </div>
             <% } %>
 
             <%# every day posts. %>
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+            <div class="cd-timeline-img day" >
                 <span><%- date(post.date, 'YYYY-MM-DD').substring(8, 10) %></span>
             </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
+            <article class="cd-timeline-content" >
                 <div class="article col s12 m6">
                     <div class="card">
                         <a href="<%- url_for(post.path) %>">
