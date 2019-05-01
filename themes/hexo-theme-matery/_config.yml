@@ -10,9 +10,7 @@ menu:
   Categories:
     url: /categories
     icon: fa-bookmark
-  Archives:
-    url: /archives
-    icon: fa-archive
+
 #  About:
 #   url: /about
 #   icon: fa-user-circle-o
@@ -21,7 +19,7 @@ menu:
 # 配置首页显示"梦想"的语句.
 dream:
   enable: true
-  text: 大多数思想家写得拙劣，因为他们不仅要传达自己的思想，而且要传达思考的过程。
+  text: 福兮祸所伏祸兮福所倚
 
 # Whether to display the title of the recommended posts
 # 是否显示推荐文章的标题

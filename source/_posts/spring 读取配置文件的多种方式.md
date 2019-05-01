@@ -60,4 +60,24 @@ Properties pro = PropertiesLoaderUtils.loadProperties(resource);
 PropertiesWrap proWrap = new PropertiesWrap(pro);
 ```
 
+这种可以一次读取多个文件
+
+```java
+@Bean(name = "appProperties")
+public Properties configProperties() throws Exception {
+	PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
+	
+	// 1
+//		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+//		propertiesFactoryBean.setLocations(resolver.getResource("classpath:dev.properties"),
+//				resolver.getResource("classpath:groovy.properties"));
+	
+	// 2
+	propertiesFactoryBean.setLocations(new ClassPathResource("dev.properties"), new ClassPathResource("groovy.properties"));
+	propertiesFactoryBean.afterPropertiesSet();
+	Properties appProperties = propertiesFactoryBean.getObject();
+	return appProperties;
+}
+```
+
 示例： [https://github.com/pleuvoir/reference-samples/tree/master/spring-annotation-based-example/src/main/java/io/github/pleuvoir/chapter7](https://github.com/pleuvoir/reference-samples/tree/master/spring-annotation-based-example/src/main/java/io/github/pleuvoir/chapter7)

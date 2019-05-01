@@ -141,12 +141,12 @@ server_name  39.105.110.40;	# 监听此 ip 的访问（一般为入口ip）
 
 location /a {						# 如果请求的后缀是 /a 即使不加 = 也是精准匹配
         rewrite ^/  /a.html break;	#  /a 请求返回  html/static/路径下的 a 页面
-        root   html/static/;		# 可能有用也可能没用，因为会被其他的覆盖
+        root   html/static/;		# 这里表示 a.html 在这个目录下
 	}
 
 location /b/a {		
         rewrite ^/  /b.html break;	# /b/a 或 /b/a/1 请求返回 b 页面
-        root   html/static/;  #
+        root   html/static/;  
 	}
 
 location /b/d/a {
@@ -257,5 +257,34 @@ server {
 html代理：
 location /static {
 	proxy_pass http://172.17.0.3/; #这里是转发到另外一台服务器，由它来提供静态文件
+}
+```
+
+#### gzip 压缩
+
+对输出到客户端的内容进行压缩，以减小传输文件体积，减少对网络带宽的占用。服务器端要压缩，客户端必须解压缩，这都将占用cpu时间。不过，由于传输内容减小了，传输过程中，各网卡、路由器、交换机对数据包的处理时间也会缩短。gzip压缩是就在这里赢得了时间。
+
+必须满足以下几个条件：
+
+1、客户端发送的HTTP报头必须含有 “Accept-Encoding” 字段，且其值包含 “gzip” 这个压缩类型。
+一般浏览器都会发 “Accept-Encoding:gzip, deflate, sdch” 这样的报头。
+
+2、服务器启用了gzip压缩，那么响应头会包含 Content-Encoding:gzip， 客户端根据这个来判断服务器返回的内容是否真正为gzip压缩过的内容。
+
+
+gzip压缩对文本文件压缩效果非常好（40%～80%），而对图片文件效果甚微。实际应用中可以考虑对js、html、css格式的文件开启gzip压缩。
+
+
+```
+location ~ /(.*)\.(html|js|css|jpg|jpeg|png|gif)$ {
+	gzip on; # 启用gzip压缩，默认是off，不启用
+	
+	# 对js、css、jpg、png、gif格式的文件启用gzip压缩功能
+	gzip_types application/javascript text/css image/jpeg image/png image/gif;
+	gzip_min_length 1024; # 所压缩文件的最小值，小于这个的不会压缩
+	gzip_buffers 4 1k; # 设置压缩响应的缓冲块的大小和个数，默认是内存一个页的大小
+	gzip_comp_level 1; # 压缩水平，默认1。取值范围1-9，取值越大压缩比率越大，但越耗cpu时间
+	
+	root html/gzip; # 这行和 gzip 压缩无关，表示文件目录
 }
 ```
