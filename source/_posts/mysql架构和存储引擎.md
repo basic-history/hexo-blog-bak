@@ -1,9 +1,8 @@
-
 ---
 title: mysql架构和存储引擎
 date: 2019-02-19 12:00:00
 author: pleuvoir
-img: /images/code.jpg
+img: /images/mysql.jpg
 tags:
   - mysql
 categories:
@@ -32,7 +31,6 @@ categories:
 ```sql
 show VARIABLES like '%max_connections%'
 set GLOBAL max_connections = 200
-max_connections=151
 ```
 
 
@@ -41,7 +39,7 @@ max_connections=151
 其中服务层由以下4部分构成：
 
 1. SQL处理层（负责一些sql语句的执行，存储过程，视图等）
-2. 缓存（）
+2. 缓存
 3. 解析（解析为msql认识的语句）
 4. 优化（优化一些无谓的操作）
 
@@ -165,6 +163,3 @@ set global innodb_file_per_table=on
 ```sql
 OPTIMIZE TABLE product_info2 收缩优化表，可以理解为整理磁盘空间
 ```
-
-
-// TODO

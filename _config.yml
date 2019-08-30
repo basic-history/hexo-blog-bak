@@ -56,7 +56,7 @@ prism_plugin:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 36
+  per_page: 24
   order_by: -date
   
 # Category & Tag
